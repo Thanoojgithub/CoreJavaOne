@@ -1,4 +1,4 @@
-package com;
+package com.corejava;
 
 public class LinkedListApp {
 
