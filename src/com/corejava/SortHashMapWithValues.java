@@ -1,4 +1,4 @@
-package com;
+package com.corejava;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,11 +8,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SortHashMapWithValues {
 
 	public static void main(String[] args) {
 
+		hashMapSortWithValuesUsingListAndComparator();
+		hashMapSortWithValuesUsingSetAndComparable();
+	}
+
+	private static void hashMapSortWithValuesUsingListAndComparator() {
 		Map<String, EmployeeOne> map = new LinkedHashMap<String, EmployeeOne>();
 		map.put("1", new EmployeeOne(1, "ram"));
 		map.put("2", new EmployeeOne(2, "seetha"));
@@ -21,24 +27,56 @@ public class SortHashMapWithValues {
 		map.put("5", new EmployeeOne(5, "bharatha"));
 
 		for (Map.Entry<String, EmployeeOne> entry : map.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue());
+			System.out.println(entry.getKey() + " | " + entry.getValue());
 		}
 
 		Set<Entry<String, EmployeeOne>> set = map.entrySet();
-		List<Entry<String, EmployeeOne>> list = new ArrayList<Entry<String, EmployeeOne>>(set);
+		List<Entry<String, EmployeeOne>> list = new ArrayList<Entry<String, EmployeeOne>>(
+				set);
 		Collections.sort(list,
 				new Comparator<Map.Entry<String, EmployeeOne>>() {
 					public int compare(Map.Entry<String, EmployeeOne> o1,
 							Map.Entry<String, EmployeeOne> o2) {
-						return (o1.getValue()).compareTo(o2.getValue());
+						return o1.getValue().geteId() - o2.getValue().geteId();
 					}
 				});
 		for (Map.Entry<String, EmployeeOne> entry : list) {
 			System.out.println(entry.getKey() + " ==== " + entry.getValue());
 		}
 
+		Collections.sort(list,
+				new Comparator<Map.Entry<String, EmployeeOne>>() {
+					public int compare(Map.Entry<String, EmployeeOne> o1,
+							Map.Entry<String, EmployeeOne> o2) {
+						return o1.getValue().getName()
+								.compareTo(o2.getValue().getName());
+					}
+				});
+		for (Map.Entry<String, EmployeeOne> entry : list) {
+			System.out.println(entry.getKey() + " ==== " + entry.getValue());
+		}
 	}
 
+	private static void hashMapSortWithValuesUsingSetAndComparable() {
+		Map<String, EmployeeOne> map = new LinkedHashMap<String, EmployeeOne>();
+		map.put("1", new EmployeeOne(1, "ram"));
+		map.put("2", new EmployeeOne(2, "seetha"));
+		map.put("3", new EmployeeOne(3, "lakshman"));
+		map.put("4", new EmployeeOne(4, "hanuma"));
+		map.put("5", new EmployeeOne(5, "bharatha"));
+
+		for (Map.Entry<String, EmployeeOne> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + " | " + entry.getValue());
+		}
+
+		Set<Map.Entry<String, EmployeeOne>> treeSet = new TreeSet<Map.Entry<String, EmployeeOne>>();
+		for (Map.Entry<String, EmployeeOne> entry : map.entrySet()) {
+			treeSet.add(entry);
+		}
+		for (Map.Entry<String, EmployeeOne> entry : treeSet) {
+			System.out.println(entry.getKey() + " ==== " + entry.getValue());
+		}
+	}
 }
 
 class EmployeeOne implements Comparable<EmployeeOne> {

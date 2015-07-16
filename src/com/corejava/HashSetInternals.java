@@ -1,16 +1,16 @@
-package com.hibernateonemanybidirectional.app;
+package com.corejava;
 
 import java.util.Date;
 import java.util.HashSet;
 
 public class HashSetInternals {
 	public static void main(String[] args) {
-		HashSet<Emp> hashSet = new HashSet<Emp>();
+		HashSet<EmpOne> hashSet = new HashSet<EmpOne>();
 		Date date = new Date();
-		hashSet.add(Emp.getEmpInstance(1,"ram",date));
-		hashSet.add(Emp.getEmpInstance(2,"ram",date));
-		hashSet.add(Emp.getEmpInstance(3,"ram",date));
-		for (Emp emp : hashSet) {
+		hashSet.add(EmpOne.getEmpInstance(1,"ram",date));
+		hashSet.add(EmpOne.getEmpInstance(2,"ram",date));
+		hashSet.add(EmpOne.getEmpInstance(3,"ram",date));
+		for (EmpOne emp : hashSet) {
 			System.out.println(emp);
 		}
 		System.out.println("end");
@@ -18,7 +18,7 @@ public class HashSetInternals {
 
 }
 
-class Emp {
+class EmpOne {
 
 	private int eId;
 	private String name;
@@ -28,11 +28,11 @@ class Emp {
 		return eId;
 	}
 
-	public Emp() {
+	public EmpOne() {
 	}
 
-	public static Emp getEmpInstance(int eId, String name, Date doj) {
-		return new Emp(eId, name, doj);
+	public static EmpOne getEmpInstance(int eId, String name, Date doj) {
+		return new EmpOne(eId, name, doj);
 	}
 
 	public void seteId(int eId) {
@@ -55,7 +55,7 @@ class Emp {
 		this.doj = doj;
 	}
 
-	public Emp(int eId, String name, Date doj) {
+	public EmpOne(int eId, String name, Date doj) {
 		super();
 		this.eId = eId;
 		this.name = name;
@@ -81,7 +81,7 @@ class Emp {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Emp other = (Emp) obj;
+		EmpOne other = (EmpOne) obj;
 		if (doj == null) {
 			if (other.doj != null)
 				return false;

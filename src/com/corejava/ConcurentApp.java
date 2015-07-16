@@ -1,4 +1,4 @@
-package com;
+package com.corejava;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,17 +40,17 @@ public class ConcurentApp {
 		 * System.out.println("size : "+ maps.size());
 		 */
 
-		Emp emp1 = new Emp(1, "ram", new Date());
-		Emp emp2 = new Emp(2, "ram", new Date());
-		Emp emp3 = new Emp(3, "ram", new Date());
+		EmpOne emp1 = new EmpOne(1, "ram", new Date());
+		EmpOne emp2 = new EmpOne(2, "ram", new Date());
+		EmpOne emp3 = new EmpOne(3, "ram", new Date());
 		Dept dept1 = new Dept(10, "ayodya");
 		Dept dept2 = new Dept(20, "ayodya");
 		Dept dept3 = new Dept(30, "ayodya");
-		HashMap<Emp, Dept> hashMap = new HashMap<>();
+		HashMap<EmpOne, Dept> hashMap = new HashMap<>();
 		hashMap.put(emp1, dept1);
 		hashMap.put(emp2, dept2);
 		hashMap.put(emp3, dept3);
-		for (Map.Entry<Emp, Dept> entry : hashMap.entrySet()) {
+		for (Map.Entry<EmpOne, Dept> entry : hashMap.entrySet()) {
 			System.out.println(entry.getKey().hashCode() + " | "
 					+ entry.getKey() + " " + entry.getValue());
 		}
@@ -61,7 +61,7 @@ public class ConcurentApp {
 		System.out.println(emp1.hashCode() + " | " + emp1);
 		System.out.println(hashMap.get(emp1));
         
-        List<Emp> listObj = new ArrayList<>();
+        List<EmpOne> listObj = new ArrayList<>();
         listObj.add(emp1);
         listObj.add(emp2);
        // listObj.add(dept1);
@@ -83,15 +83,15 @@ public class ConcurentApp {
 	
 }
 
-class Emp {
+class EmpTwo {
 	private Integer eId;
 	private String eName;
 	private Date doj;
 
-	public Emp() {
+	public EmpTwo() {
 	}
 
-	public Emp(Integer eId, String eName, Date doj) {
+	public EmpTwo(Integer eId, String eName, Date doj) {
 		super();
 		this.eId = eId;
 		this.eName = eName;
@@ -141,7 +141,7 @@ class Emp {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Emp other = (Emp) obj;
+		EmpTwo other = (EmpTwo) obj;
 		if (doj == null) {
 			if (other.doj != null)
 				return false;

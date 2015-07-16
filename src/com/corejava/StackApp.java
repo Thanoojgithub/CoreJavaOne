@@ -1,4 +1,4 @@
-package com;
+package com.corejava;
 
 import java.util.Stack;
 
