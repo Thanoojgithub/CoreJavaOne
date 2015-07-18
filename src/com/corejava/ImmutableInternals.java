@@ -4,42 +4,51 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
- * Why string hashCode has been cached, why not for a custom(user defined) immutable class object ?
- * Here is the sample code of tampering hashCode() logic inside ImmutableInternals.
+ * Why string hashCode has been cached, why not for a custom(user defined)
+ * immutable class object ? Here is the sample code of tampering hashCode()
+ * logic inside ImmutableInternals.
  * 
  * @author Thanooj Kalathuru
  *
  */
 public class ImmutableInternals {
+	
+	private static final Logger LOG = Logger.getLogger(ImmutableInternals.class.getName());
 
 	public static void main(String[] args) {
 
+		// String as a KEY
 		Map<String, String> map = new HashMap<>();
 		String s1 = "sriram";
 		String s2 = "seeta";
 		map.put(s1, "ayodhya");
 		map.put(s2, "midhila");
-
 		/**
 		 * it will NOT do recalculated hashCode for second time, instead it will
 		 * get hashCode from 'hash' inside hashCode()
 		 */
-		System.out.println(map.get(s1));
+		LOG.info(map.get(s1));
 
+		
+		// CustomerImm (user defined immutable class) instance as a KEY
 		Map<CustomerImm, String> mapImm = new HashMap<>();
-		CustomerImm Imm1 = CustomerImm.createNewInstance(1, s1, Calendar.getInstance().getTime());
-		CustomerImm Imm2 = CustomerImm.createNewInstance(2, s2, Calendar.getInstance().getTime());
-		mapImm.put(Imm1, s1);
-		mapImm.put(Imm2, s2);
+		CustomerImm custImm1 = CustomerImm.createNewInstance(1, s1, Calendar.getInstance().getTime());
+		CustomerImm custImm2 = CustomerImm.createNewInstance(2, s2, Calendar.getInstance().getTime());
+		mapImm.put(custImm1, s1);
+		mapImm.put(custImm2, s2);
 
-		System.out.println(mapImm.get(Imm1));
+		LOG.info(mapImm.get(custImm1));
+		LOG.info(mapImm.get(custImm2));
 	}
 
 }
 
 final class CustomerImm {
+	
+	private static final Logger LOG = Logger.getLogger(CustomerImm.class.getName());
 
 	/** Cache the hashCode for the ImmutableClass */
 	private int hash; // Default to 0
@@ -61,10 +70,10 @@ final class CustomerImm {
 	 * Factory method for creating new instance with prime properties and hash
 	 * (for caching)
 	 * 
-	 * @param fld1
-	 * @param fld2
+	 * @param cId
+	 * @param cName
 	 * @param date
-	 * @return ImmutableClass
+	 * @return CustomerImm
 	 */
 	public static CustomerImm createNewInstance(Integer cId, String cName, Date dOB) {
 		return new CustomerImm(cId, cName, dOB, 0);
@@ -95,18 +104,15 @@ final class CustomerImm {
 		final int prime = 31;
 		int h = this.hash;
 		if (h == 0) {
-			System.out.println("Inside hashCode() method to calculate hashCode");
+			LOG.info("Inside hashCode() method to calculate hashCode");
 			int result = 1;
-			result = prime* result
-					+ ((cId == null) ? 0 : cId.hashCode());
-			result = prime * result
-					+ ((cName == null) ? 0 : cName.hashCode());
-			result = prime * result
-					+ ((dOB == null) ? 0 : dOB.hashCode());
+			result = prime * result + ((cId == null) ? 0 : cId.hashCode());
+			result = prime * result + ((cName == null) ? 0 : cName.hashCode());
+			result = prime * result + ((dOB == null) ? 0 : dOB.hashCode());
 			this.hash = result;
 			h = this.hash;
 		}
-		System.out.println("Inside hashCode() :: " + h);
+		LOG.info("Inside hashCode() :: " + h);
 		return h;
 	}
 
