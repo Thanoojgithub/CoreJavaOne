@@ -2,8 +2,11 @@ package com.corejava;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.logging.Logger;
 
 public class ComparatorComparable {
+	
+	private static final Logger LOG = Logger.getLogger("ComparatorComparable");
 
 	public static void main(String[] args) {
 
@@ -19,30 +22,26 @@ public class ComparatorComparable {
 		fruits[2] = orange;
 		fruits[3] = banana;
 
-		System.out
-				.println("+++++++++++++++++natural sorting, using comparable+++++++++++++++++++++++");
+		LOG.info("+++++++++++++++++natural sorting, using comparable+++++++++++++++++++++++");
 		// natural sorting, using comparable
 		Arrays.sort(fruits);
 		for (Fruit fruit : fruits) {
-			System.out.println(fruit);
+			LOG.info("fruit : "+fruit);
 		}
-		System.out
-				.println("+++++++++++++++++natural sorting, using FruitNameComparator+++++++++++++++++++++++");
+		LOG.info("+++++++++++++++++natural sorting, using FruitNameComparator+++++++++++++++++++++++");
 		Arrays.sort(fruits, Fruit.FruitNameComparator);
 		for (Fruit fruit : fruits) {
-			System.out.println(fruit);
+			LOG.info("fruit : "+fruit);
 		}
-		System.out
-				.println("+++++++++++++++++natural sorting, using FruitDescComparator+++++++++++++++++++++++");
+		LOG.info("+++++++++++++++++natural sorting, using FruitDescComparator+++++++++++++++++++++++");
 		Arrays.sort(fruits, Fruit.FruitDescComparator);
 		for (Fruit fruit : fruits) {
-			System.out.println(fruit);
+			LOG.info("fruit : "+fruit);
 		}
-		System.out
-				.println("+++++++++++++++++natural sorting, using QuantityComparator+++++++++++++++++++++++");
+		LOG.info("+++++++++++++++++natural sorting, using QuantityComparator+++++++++++++++++++++++");
 		Arrays.sort(fruits, Fruit.QuantityComparator);
 		for (Fruit fruit : fruits) {
-			System.out.println(fruit);
+			LOG.info("fruit : "+fruit);
 		}
 	}
 
