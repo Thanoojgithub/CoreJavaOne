@@ -2,16 +2,20 @@ package com.corejava.string;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class StringDuplicateCharWordMap {
 
-	private static final Logger LOG = Logger.getLogger("StringDuplicateCharWordMap");
-	
+	private static final Logger LOG = Logger
+			.getLogger("StringDuplicateCharWordMap");
+
 	public static void main(String[] args) {
 		String str = "Ram killed	Ravan Ravan	killed by Ram t";
 		char firstNonRepeatedChar = getFirstNonRepeatedChar(str);
@@ -22,6 +26,7 @@ public class StringDuplicateCharWordMap {
 		getAllRepeatedWord(str);
 		newStringWithIntern();
 		LOG.info(removeChar(str, 't'));
+		byUsingCollectionsFrequency(str);
 	}
 
 	public static char getFirstNonRepeatedChar(String str) {
@@ -68,7 +73,8 @@ public class StringDuplicateCharWordMap {
 		List<String> listStr = Arrays.asList(str.split("\\s"));
 		Map<String, Integer> countsWord = new LinkedHashMap<>();
 		for (String s : listStr) {
-			countsWord.put(s, countsWord.containsKey(s) ? countsWord.get(s) + 1 : 1);
+			countsWord.put(s, countsWord.containsKey(s) ? countsWord.get(s) + 1
+					: 1);
 		}
 		for (Entry<String, Integer> entry : countsWord.entrySet()) {
 			LOG.info(entry.getKey() + " | " + entry.getValue());
@@ -102,11 +108,19 @@ public class StringDuplicateCharWordMap {
 		}
 
 	}
-	
+
 	private static String removeChar(String str, char c) {
-	    if (str == null)
-	        return null;
-	    return str.replaceAll(Character.toString(c), "");
+		if (str == null)
+			return null;
+		return str.replaceAll(Character.toString(c), "");
+	}
+
+	private static void byUsingCollectionsFrequency(String str) {
+		List<String> list = Arrays.asList(str.split("\\s"));
+		Set<String> uniqueWords = new HashSet<String>(list);
+		for (String word : uniqueWords) {
+			LOG.info(word + ": " + Collections.frequency(list, word));
+		}
 	}
 
 }
