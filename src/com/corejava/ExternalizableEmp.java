@@ -70,7 +70,7 @@ public class ExternalizableEmp implements Externalizable {
 
 	private static void getDeSerialized() throws IOException,
 			ClassNotFoundException {
-		FileInputStream fais = new FileInputStream("E:/Emp.ser");
+		FileInputStream fais = new FileInputStream("D:/Emp.ser");
 		ObjectInputStream objectInputStream = new ObjectInputStream(fais);
 		ExternalizableEmp emp2 = (ExternalizableEmp) objectInputStream
 				.readObject();
@@ -82,7 +82,7 @@ public class ExternalizableEmp implements Externalizable {
 	private static void getSerialized() throws IOException {
 		ExternalizableEmp emp = new ExternalizableEmp("1", "ram");
 		System.out.println(emp);
-		FileOutputStream faos = new FileOutputStream("E:/Emp.ser");
+		FileOutputStream faos = new FileOutputStream("D:/Emp.ser");
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(faos);
 		objectOutputStream.writeObject(emp);
 		faos.close();

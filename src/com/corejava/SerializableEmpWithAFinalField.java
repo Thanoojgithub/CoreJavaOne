@@ -1,5 +1,6 @@
 package com.corejava;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,24 +11,23 @@ import java.io.Serializable;
 public class SerializableEmpWithAFinalField implements Serializable {
 
 	private static final long serialVersionUID = 6783423170203504095L;
-	private final String eId;
-	private String eName;
+	private static String eId;
+	private final String eName;
 
 
 	public SerializableEmpWithAFinalField(String eId, String eName) {
-		super();
-		System.out.println("EMP cust");
 		this.eId = eId;
 		this.eName = eName;
+		System.out.println("EMP cust");
 	}
 
 	public String geteName() {
 		return eName;
 	}
 
-	public void seteName(String eName) {
+	/*public void seteName(String eName) {
 		this.eName = eName;
-	}
+	}*/
 
 	public String geteId() {
 		return eId;
@@ -45,19 +45,17 @@ public class SerializableEmpWithAFinalField implements Serializable {
 
 	private static void getDeSerialized() throws IOException,
 			ClassNotFoundException {
-		FileInputStream fais = new FileInputStream("E:/Emp.ser");
+		FileInputStream fais = new FileInputStream(new File("D:/Emp.ser"));
 		ObjectInputStream objectInputStream = new ObjectInputStream(fais);
-		SerializableEmpWithAFinalField emp2 = (SerializableEmpWithAFinalField) objectInputStream
-				.readObject();
+		SerializableEmpWithAFinalField emp2 = (SerializableEmpWithAFinalField) objectInputStream.readObject();
 		System.out.println(emp2);
-
 		fais.close();
 	}
 
 	private static void getSerialized() throws IOException {
 		SerializableEmpWithAFinalField emp = new SerializableEmpWithAFinalField("1", "ram");
 		System.out.println(emp);
-		FileOutputStream faos = new FileOutputStream("E:/Emp.ser");
+		FileOutputStream faos = new FileOutputStream("D:/Emp.ser");
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(faos);
 		objectOutputStream.writeObject(emp);
 		faos.close();
