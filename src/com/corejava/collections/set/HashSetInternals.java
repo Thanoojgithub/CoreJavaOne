@@ -1,16 +1,16 @@
-package com.corejava;
+package com.corejava.collections.set;
 
 import java.util.Date;
 import java.util.HashSet;
 
 public class HashSetInternals {
 	public static void main(String[] args) {
-		HashSet<EmpOne> hashSet = new HashSet<EmpOne>();
+		HashSet<EmpTwo> hashSet = new HashSet<EmpTwo>();
 		Date date = new Date();
-		hashSet.add(EmpOne.getEmpInstance(1,"ram",date));
-		hashSet.add(EmpOne.getEmpInstance(2,"ram",date));
-		hashSet.add(EmpOne.getEmpInstance(3,"ram",date));
-		for (EmpOne emp : hashSet) {
+		hashSet.add(EmpTwo.getEmpInstance(1,"ram",date));
+		hashSet.add(EmpTwo.getEmpInstance(2,"ram",date));
+		hashSet.add(EmpTwo.getEmpInstance(3,"ram",date));
+		for (EmpTwo emp : hashSet) {
 			System.out.println(emp);
 		}
 		System.out.println("end");
@@ -18,7 +18,7 @@ public class HashSetInternals {
 
 }
 
-class EmpOne {
+class EmpTwo {
 
 	private int eId;
 	private String name;
@@ -28,11 +28,11 @@ class EmpOne {
 		return eId;
 	}
 
-	public EmpOne() {
+	public EmpTwo() {
 	}
 
-	public static EmpOne getEmpInstance(int eId, String name, Date doj) {
-		return new EmpOne(eId, name, doj);
+	public static EmpTwo getEmpInstance(int eId, String name, Date doj) {
+		return new EmpTwo(eId, name, doj);
 	}
 
 	public void seteId(int eId) {
@@ -55,7 +55,7 @@ class EmpOne {
 		this.doj = doj;
 	}
 
-	public EmpOne(int eId, String name, Date doj) {
+	public EmpTwo(int eId, String name, Date doj) {
 		super();
 		this.eId = eId;
 		this.name = name;
@@ -81,7 +81,7 @@ class EmpOne {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EmpOne other = (EmpOne) obj;
+		EmpTwo other = (EmpTwo) obj;
 		if (doj == null) {
 			if (other.doj != null)
 				return false;

@@ -1,4 +1,4 @@
-package com.corejava;
+package com.corejava.collections.map;
 
 import java.util.ArrayList;
 import java.util.Collections;

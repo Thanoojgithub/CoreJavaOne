@@ -3,10 +3,8 @@ package com.corejava;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class ConcurentApp {
 
@@ -40,17 +38,17 @@ public class ConcurentApp {
 		 * System.out.println("size : "+ maps.size());
 		 */
 
-		EmpOne emp1 = new EmpOne(1, "ram", new Date());
-		EmpOne emp2 = new EmpOne(2, "ram", new Date());
-		EmpOne emp3 = new EmpOne(3, "ram", new Date());
+		EmpTwo emp1 = new EmpTwo(1, "ram", new Date());
+		EmpTwo emp2 = new EmpTwo(2, "ram", new Date());
+		EmpTwo emp3 = new EmpTwo(3, "ram", new Date());
 		Dept dept1 = new Dept(10, "ayodya");
 		Dept dept2 = new Dept(20, "ayodya");
 		Dept dept3 = new Dept(30, "ayodya");
-		HashMap<EmpOne, Dept> hashMap = new HashMap<>();
+		HashMap<EmpTwo, Dept> hashMap = new HashMap<>();
 		hashMap.put(emp1, dept1);
 		hashMap.put(emp2, dept2);
 		hashMap.put(emp3, dept3);
-		for (Map.Entry<EmpOne, Dept> entry : hashMap.entrySet()) {
+		for (Map.Entry<EmpTwo, Dept> entry : hashMap.entrySet()) {
 			System.out.println(entry.getKey().hashCode() + " | "
 					+ entry.getKey() + " " + entry.getValue());
 		}
@@ -61,7 +59,7 @@ public class ConcurentApp {
 		System.out.println(emp1.hashCode() + " | " + emp1);
 		System.out.println(hashMap.get(emp1));
         
-        List<EmpOne> listObj = new ArrayList<>();
+        List<EmpTwo> listObj = new ArrayList<>();
         listObj.add(emp1);
         listObj.add(emp2);
        // listObj.add(dept1);
