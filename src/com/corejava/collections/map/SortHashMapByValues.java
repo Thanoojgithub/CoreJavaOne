@@ -6,11 +6,10 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class SortHashMapWithValues {
+public class SortHashMapByValues {
 
 	public static void main(String[] args) {
 
@@ -19,20 +18,22 @@ public class SortHashMapWithValues {
 	}
 
 	private static void hashMapSortWithValuesUsingListAndComparator() {
+		/*
+		 * To maintain Map in insertion order, use LinkedHashMap
+		 */
 		Map<String, EmployeeOne> map = new LinkedHashMap<String, EmployeeOne>();
 		map.put("1", new EmployeeOne(1, "ram"));
-		map.put("2", new EmployeeOne(2, "seetha"));
 		map.put("3", new EmployeeOne(3, "lakshman"));
-		map.put("4", new EmployeeOne(4, "hanuma"));
 		map.put("5", new EmployeeOne(5, "bharatha"));
+		map.put("4", new EmployeeOne(4, "hanuma"));
+		map.put("2", new EmployeeOne(2, "seetha"));
 
 		for (Map.Entry<String, EmployeeOne> entry : map.entrySet()) {
 			System.out.println(entry.getKey() + " | " + entry.getValue());
 		}
 
-		Set<Entry<String, EmployeeOne>> set = map.entrySet();
-		List<Entry<String, EmployeeOne>> list = new ArrayList<Entry<String, EmployeeOne>>(
-				set);
+		Set<Map.Entry<String, EmployeeOne>> set = map.entrySet();
+		List<Map.Entry<String, EmployeeOne>> list = new ArrayList<Map.Entry<String, EmployeeOne>>(set);
 		Collections.sort(list,
 				new Comparator<Map.Entry<String, EmployeeOne>>() {
 					public int compare(Map.Entry<String, EmployeeOne> o1,
@@ -58,12 +59,15 @@ public class SortHashMapWithValues {
 	}
 
 	private static void hashMapSortWithValuesUsingSetAndComparable() {
+		/*
+		 * To maintain Map in insertion order, use LinkedHashMap
+		 */
 		Map<String, EmployeeOne> map = new LinkedHashMap<String, EmployeeOne>();
 		map.put("1", new EmployeeOne(1, "ram"));
-		map.put("2", new EmployeeOne(2, "seetha"));
-		map.put("3", new EmployeeOne(3, "lakshman"));
 		map.put("4", new EmployeeOne(4, "hanuma"));
+		map.put("3", new EmployeeOne(3, "lakshman"));
 		map.put("5", new EmployeeOne(5, "bharatha"));
+		map.put("2", new EmployeeOne(2, "seetha"));
 
 		for (Map.Entry<String, EmployeeOne> entry : map.entrySet()) {
 			System.out.println(entry.getKey() + " | " + entry.getValue());

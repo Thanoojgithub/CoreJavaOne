@@ -13,32 +13,51 @@ public class SerializableEmpWithAFinalField implements Serializable {
 	private static final long serialVersionUID = 6783423170203504095L;
 	private static String eId;
 	private final String eName;
+	private String loc;
+	
+	/* 1. Serializable && Deserializable is not expecting default constructor, if it use default/parameterized constructor, trying to tamper the original data
+	 * 2. The blank final field eName may not have been initialized
+	 */
+	/*public SerializableEmpWithAFinalField() {
+		System.out.println("inside SerializableEmpWithAFinalField()");
+	}*/
 
-
-	public SerializableEmpWithAFinalField(String eId, String eName) {
+	public SerializableEmpWithAFinalField(String eId, String eName, String loc) {
 		this.eId = eId;
 		this.eName = eName;
-		System.out.println("EMP cust");
+		this.loc = loc;
+		System.out
+				.println("EMP - inside SerializableEmpWithAFinalField(String eId, String eName, String loc)");
+	}
+
+	public static String geteId() {
+		return eId;
+	}
+
+	public static void seteId(String eId) {
+		SerializableEmpWithAFinalField.eId = eId;
+	}
+
+	public String getLoc() {
+		return loc;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
 	}
 
 	public String geteName() {
 		return eName;
 	}
-
-	/*public void seteName(String eName) {
-		this.eName = eName;
-	}*/
-
-	public String geteId() {
-		return eId;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "Emp [eId=" + eId + ", eName=" + eName + "]";
+		return "SerializableEmpWithAFinalField [eName=" + eName + ", loc="
+				+ loc + "]";
 	}
 
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
+	public static void main(String[] args) throws IOException,
+			ClassNotFoundException {
 		getSerialized();
 		getDeSerialized();
 	}
@@ -53,7 +72,7 @@ public class SerializableEmpWithAFinalField implements Serializable {
 	}
 
 	private static void getSerialized() throws IOException {
-		SerializableEmpWithAFinalField emp = new SerializableEmpWithAFinalField("1", "ram");
+		SerializableEmpWithAFinalField emp = new SerializableEmpWithAFinalField("1", "sriram", "ayodya");
 		System.out.println(emp);
 		FileOutputStream faos = new FileOutputStream("D:/Emp.ser");
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(faos);

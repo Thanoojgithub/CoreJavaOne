@@ -1,42 +1,57 @@
-package com.corejava;
+package com.corejava.collections.map;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurentApp {
 
 	public static void main(String[] args) {
 
-		/*
-		 * Map<String, String> maps = new HashMap<String, String>(); //
-		 * Map<String, String> maps = new ConcurrentHashMap<String, String>();
-		 * 
-		 * maps.put("a", "a"); maps.put("1", "d"); maps.put("def", "c");
-		 * maps.put("b", "b");
-		 * 
-		 * 
-		 * Set<String> keySet = maps.keySet();
-		 * 
-		 * Iterator<String> iterator = keySet.iterator();
-		 * 
-		 * while(iterator.hasNext()){ System.out.println(iterator.next());
-		 * iterator.remove(); }
-		 * 
-		 * 
-		 * // Iterator<String> iterator = keySet.iterator();
-		 * 
-		 * 
-		 * for (Iterator iterator2 = keySet.iterator(); iterator2.hasNext();) {
-		 * String string = (String) iterator2.next();
-		 * System.out.println("string : "+ string); maps.remove(string);
-		 * 
-		 * } while (iterator.hasNext()) { //maps.remove(iterator.next());
-		 * //iterator.remove(); maps.put("234d", "sdfsadq235423"); }
-		 * System.out.println("size : "+ maps.size());
-		 */
+		
+		Map<String, String> maps = new HashMap<String, String>();
+		maps.put("a", "a"); 
+		maps.put("1", "1"); 
+		maps.put("b", "b");
+		maps.put("c", "c");
+		
+		
+		Set<String> keySet = maps.keySet();
+		Iterator<String> iterator = keySet.iterator();
+		while(iterator.hasNext()){ 
+			iterator.next();// this next() call is mandatory(before), when we try to call iterator.remove();
+			iterator.remove(); 
+			/*
+			 * java.util.ConcurrentModificationException
+			 */
+			//maps.remove(iterator.next());
+		}
+		
+		Map<String, String> concMaps = new ConcurrentHashMap<String, String>();
+		concMaps.put("a", "a"); 
+		concMaps.put("1", "1"); 
+		concMaps.put("b", "b");
+		concMaps.put("c", "c");
+		for (Map.Entry<String, String> entry : concMaps.entrySet()) {
+			System.out.println(entry.getKey() + " | "+entry.getValue());
+		}
+		for (Iterator<String> iterator2 = keySet.iterator(); iterator2.hasNext();) {
+			String string = (String) iterator2.next();
+			concMaps.remove(string);
+			concMaps.put(string, string);
+		} 
+		
+		for (Map.Entry<String, String> entry : concMaps.entrySet()) {
+			System.out.println(entry.getKey() + " | "+entry.getValue());
+		}
+	
+		 
 
 		EmpTwo emp1 = new EmpTwo(1, "ram", new Date());
 		EmpTwo emp2 = new EmpTwo(2, "ram", new Date());
@@ -52,6 +67,21 @@ public class ConcurentApp {
 			System.out.println(entry.getKey().hashCode() + " | "
 					+ entry.getKey() + " " + entry.getValue());
 		}
+		
+		/*
+		 * To maintain Map in insertion order, use LinkedHashMap
+		 */
+		Map<String, String> linkedmaps = new LinkedHashMap<String, String>();
+		linkedmaps.put("a", "a"); 
+		linkedmaps.put("b", "b");
+		linkedmaps.put("1", "1"); 
+		linkedmaps.put("c", "c");
+		for (Map.Entry<String, String> entry : linkedmaps.entrySet()) {
+			System.out.println(entry.getKey().hashCode() + " | "
+					+ entry.getKey() + " " + entry.getValue());
+		}
+		
+		
 		System.out.println("***********************CASE************************");
 		System.out.println(emp1.hashCode() + " | " + emp1);
 		System.out.println(hashMap.get(emp1));
@@ -62,7 +92,7 @@ public class ConcurentApp {
         List<EmpTwo> listObj = new ArrayList<>();
         listObj.add(emp1);
         listObj.add(emp2);
-       // listObj.add(dept1);
+       // listObj.add(dept1); // we can add any type of Object, when it has List<Object>
         
         List<Dept> listObjDept = new ArrayList<>();
         listObjDept.add(dept1);
@@ -71,14 +101,30 @@ public class ConcurentApp {
         listOfWC(listObj);
         listOfWC(listObjDept);
         
+        List<String> listStr = new ArrayList<String>();
+        listStr.add("ram");
+        listStr.add("seeta");
+		listOfStrWC(listStr);
+        
 	}
 
+	/**
+	 * List<?> will be used only for iteration, cannot edit/modified.
+	 * 
+	 * @param listWC
+	 */
 	private static void listOfWC(List<?> listWC) {
-        for (Object object : listWC) {
+		for (Object object : listWC) {
 			System.out.println(object);
 		}
 	}
-	
+
+	private static void listOfStrWC(List<?> listWC) {
+		for (Object object : listWC) {
+			System.out.println(object);
+		}
+	}
+
 }
 
 class EmpTwo {
@@ -120,16 +166,14 @@ class EmpTwo {
 		this.doj = doj;
 	}
 
-	/*@Override
-	public int hashCode() {
-		System.out.println("calling hashCode() when we access hashMap.get() of "+this.eId);
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((doj == null) ? 0 : doj.hashCode());
-		result = prime * result + ((eId == null) ? 0 : eId.hashCode());
-		result = prime * result + ((eName == null) ? 0 : eName.hashCode());
-		return result;
-	}*/
+	/*
+	 * @Override public int hashCode() {
+	 * System.out.println("calling hashCode() when we access hashMap.get() of "
+	 * +this.eId); final int prime = 31; int result = 1; result = prime * result
+	 * + ((doj == null) ? 0 : doj.hashCode()); result = prime * result + ((eId
+	 * == null) ? 0 : eId.hashCode()); result = prime * result + ((eName ==
+	 * null) ? 0 : eName.hashCode()); return result; }
+	 */
 
 	@Override
 	public boolean equals(Object obj) {
@@ -232,4 +276,3 @@ class Dept {
 	}
 
 }
-
