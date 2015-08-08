@@ -1,4 +1,4 @@
-package com.hibu.proposal.bean;
+package com.corejava;
 
 /**
  * Threads ::
