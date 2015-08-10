@@ -7,30 +7,24 @@ public class WithWithOutHashCodeOverridingInMap {
 
 	public static void main(String[] args) {
 
-		System.out.println("---------------------getEmpWithOutHashCodeAndEquals---------------");
+		System.out.println("-------------EmpWithOutHashCodeAndEquals-----getEmpWithOutHashCodeAndEquals------------");
 		getEmpWithOutHashCodeAndEquals();
-		System.out.println("---------------------getEmpWithHashCodeAndEquals---------------");
+		System.out.println("-------------EmpWithHashCodeAndEquals--------getEmpWithHashCodeAndEquals---------------");
 		getEmpWithHashCodeAndEquals();
 	}
 
 	private static void getEmpWithOutHashCodeAndEquals() {
-		Map<Emp, String> map = new LinkedHashMap<Emp, String>();
+		Map<EmpWithOutHashCodeAndEquals, String> map = new LinkedHashMap<EmpWithOutHashCodeAndEquals, String>();
 
-		Emp emp1 = new Emp(1, "ram");
-		Emp emp2 = new Emp(2, "seeta");
+		EmpWithOutHashCodeAndEquals emp1 = new EmpWithOutHashCodeAndEquals(1, "ram");
+		EmpWithOutHashCodeAndEquals emp2 = new EmpWithOutHashCodeAndEquals(2, "seeta");
 
 		/*
 		 * emp1.seteId(2); emp1.seteName("seeta");
 		 */
 		String emp1Prev = map.put(emp1, "ram");
-		System.out.println(emp1Prev != null ? emp1Prev.hashCode() : "NULL"); // returns
-																				// previous
-																				// value
-																				// associated
-																				// with
-																				// key,
-																				// or
-																				// null
+		// returns previous value associated with key, or null
+		System.out.println(emp1Prev != null ? emp1Prev.hashCode() : "NULL");
 		/*
 		 * emp1.seteId(2); emp1.seteName("seeta");
 		 */
@@ -47,33 +41,27 @@ public class WithWithOutHashCodeOverridingInMap {
 		System.out.println(emp2Prev != null ? emp2Prev.hashCode() : "NULL");
 
 		System.out.println(map.size());
-		System.out.println(map.get(emp1) +" | "+ emp1.hashCode());
-		System.out.println(map.get(emp2) +" | "+ emp2.hashCode());
-		
-		for (Map.Entry<Emp, String> entry : map.entrySet()) {
-			System.out.println(entry.getKey() + " | " + entry.getValue() +" | "+entry.getKey().hashCode());
+		System.out.println("emp1 :: " + map.get(emp1) + " | " + emp1.hashCode());
+		System.out.println("emp2 :: " + map.get(emp2) + " | " + emp2.hashCode());
+
+		for (Map.Entry<EmpWithOutHashCodeAndEquals, String> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + " | " + entry.getValue() + " | " + entry.getKey().hashCode());
 		}
 
 	}
 
 	private static void getEmpWithHashCodeAndEquals() {
-		Map<Emp, String> map = new LinkedHashMap<Emp, String>();
+		Map<EmpWithHashCodeAndEquals, String> map = new LinkedHashMap<EmpWithHashCodeAndEquals, String>();
 
-		Emp emp1 = new Emp(1, "ram");
-		Emp emp2 = new Emp(2, "seeta");
+		EmpWithHashCodeAndEquals emp1 = new EmpWithHashCodeAndEquals(1, "ram");
+		EmpWithHashCodeAndEquals emp2 = new EmpWithHashCodeAndEquals(2, "seeta");
 
 		/*
 		 * emp1.seteId(2); emp1.seteName("seeta");
 		 */
 		String emp1Prev = map.put(emp1, "ram");
-		System.out.println(emp1Prev != null ? emp1Prev.hashCode() : "NULL"); // returns
-																				// previous
-																				// value
-																				// associated
-																				// with
-																				// key,
-																				// or
-																				// null
+		// returns previous value associated with key, or null
+		System.out.println(emp1Prev != null ? emp1Prev.hashCode() : "NULL");
 		/*
 		 * emp1.seteId(2); emp1.seteName("seeta");
 		 */
@@ -90,11 +78,11 @@ public class WithWithOutHashCodeOverridingInMap {
 		System.out.println(emp2Prev != null ? emp2Prev.hashCode() : "NULL");
 
 		System.out.println(map.size());
-		System.out.println(map.get(emp1) +" | "+ emp1.hashCode());
-		System.out.println(map.get(emp2) +" | "+ emp2.hashCode());
-		
-		for (Map.Entry<Emp, String> entry : map.entrySet()) {
-			System.out.println(entry.getKey() + " | " + entry.getValue() +" | "+entry.getKey().hashCode());
+		System.out.println("emp1 :: " + map.get(emp1) + " | " + emp1.hashCode());
+		System.out.println("emp2 :: " + map.get(emp2) + " | " + emp2.hashCode());
+
+		for (Map.Entry<EmpWithHashCodeAndEquals, String> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + " | " + entry.getValue() + " | " + entry.getKey().hashCode());
 		}
 
 	}
@@ -160,16 +148,16 @@ class EmpWithHashCodeAndEquals {
 
 	@Override
 	public String toString() {
-		return "Emp [eId=" + eId + ", eName=" + eName + "]";
+		return "EmpWithHashCodeAndEquals [eId=" + eId + ", eName=" + eName + "]";
 	}
 
 }
 
-class Emp {
+class EmpWithOutHashCodeAndEquals {
 	private Integer eId;
 	private String eName;
 
-	public Emp(Integer eId, String eName) {
+	public EmpWithOutHashCodeAndEquals(Integer eId, String eName) {
 		super();
 		this.eId = eId;
 		this.eName = eName;
@@ -193,36 +181,39 @@ class Emp {
 
 	@Override
 	public String toString() {
-		return "Emp [eId=" + eId + ", eName=" + eName + "]";
+		return "EmpWithOutHashCodeAndEquals [eId=" + eId + ", eName=" + eName + "]";
 	}
 
 }
 
-//OUT PUT ::
-	
+// OUT PUT ::
+
+/* put() and get() methods call will calculate the hashCode while adding and retrieving an element from Map, 
+ * where as forEach(Map<K,V>) iterates all the elements
+ */
+
 
 /*
-
----------------------getEmpWithOutHashCodeAndEquals---------------
+ * -------------EmpWithOutHashCodeAndEquals-----getEmpWithOutHashCodeAndEquals------------
 NULL
 112670
 112670
 NULL
 2
-ram | 2117796172
-seeta | 1406297426
-Emp [eId=2, eName=seeta] | ram | 2117796172
-Emp [eId=2, eName=seeta] | seeta | 1406297426
----------------------getEmpWithHashCodeAndEquals---------------
+emp1 :: ram | 2006041187
+emp2 :: seeta | 40972009
+EmpWithOutHashCodeAndEquals [eId=2, eName=seeta] | ram | 2006041187
+EmpWithOutHashCodeAndEquals [eId=2, eName=seeta] | seeta | 40972009
+-------------EmpWithHashCodeAndEquals--------getEmpWithHashCodeAndEquals---------------
+NULL
 NULL
 112670
 112670
-NULL
 2
-ram | 1480882610
-seeta | 2006041187
-Emp [eId=2, eName=seeta] | ram | 1480882610
-Emp [eId=2, eName=seeta] | seeta | 2006041187
+emp1 :: seeta | 109315583
+emp2 :: seeta | 109315583
+EmpWithHashCodeAndEquals [eId=2, eName=seeta] | ram | 109315583
+EmpWithHashCodeAndEquals [eId=2, eName=seeta] | seeta | 109315583
+ */
+ 
 
-
-*/
