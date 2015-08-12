@@ -7,3 +7,22 @@ Java 8' new interfaces model is the result of approaching backwards compatibilit
 NoClassDefFoundError is a linkage error basically. It occurs when you try and instantiate an object (statically with "new") and class name is there in classpath, but, class definition is not present.
 
 ClassNotFoundException is more general and is a runtime exception when you try to use a class that doesn't exist. For example, you have a parameter in a function accepts an interface and someone passes in a class that implements that interface but you don't have access to the class. It also covers case of dynamic class loading, such as using loadClass() or Class.forName().
+---------------------------------------------------------------------------------
+
+why String is immutable in Java ?
+
+in java they will make use of String very extensively, explain ??
+
+to make memory utilization in an efficient way, they had come up with 'STRING POOL' concept, which store String leterals.
+
+to use string pool efficiantly, they make String as immutable.
+
+for example : 
+
+String s1,s,s3,s4,s5 ... all are pointing to "ram" ( only 1 String instance  has been created)
+
+s1 = "sriram";// s1 now pointing to "sriram"
+as string is immutable still "ram" exist in String Pool, along with "sriram"
+
+thats where, all other s2,s3,s4,s5 are still pointing same literal "ram".
+
