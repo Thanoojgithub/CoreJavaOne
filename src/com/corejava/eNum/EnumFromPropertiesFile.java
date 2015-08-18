@@ -39,3 +39,19 @@ enum Constants {
 		return value;
 	}
 }
+
+
+
+/*simple enum to-be used
+ * 
+ * 
+ * enum Shap {
+ * 
+ * CIRCLE("CIRCLE"), RECTANGLE("RECTANGLE"), SQUARE("SQUARE"); 
+ * public final String value;
+ * 
+ * private Shap(String value) {
+ *  this.value = value; 
+ * } 
+ * }
+ */

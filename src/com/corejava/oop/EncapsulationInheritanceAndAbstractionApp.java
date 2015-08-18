@@ -1,6 +1,6 @@
 package com.corejava.oop;
 
-public class EncapsulationAndAbstractionApp {
+public class EncapsulationInheritanceAndAbstractionApp {
 
 	public static void main(String[] args) {
 		/**
