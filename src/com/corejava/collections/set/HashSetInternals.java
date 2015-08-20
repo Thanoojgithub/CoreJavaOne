@@ -7,13 +7,17 @@ public class HashSetInternals {
 	public static void main(String[] args) {
 		HashSet<EmpTwo> hashSet = new HashSet<EmpTwo>();
 		Date date = new Date();
-		hashSet.add(EmpTwo.getEmpInstance(1,"ram",date));
-		hashSet.add(EmpTwo.getEmpInstance(2,"ram",date));
-		hashSet.add(EmpTwo.getEmpInstance(3,"ram",date));
+		/**
+		 * Adds the specified element to this set if it is not already present.
+		 * If this set already contains the element, the call leaves the set unchanged and returns false.
+		 */
+		System.out.println("adding new elements :: " + hashSet.add(EmpTwo.getEmpInstance(1, "ram", date)));
+		System.out.println("adding new elements :: " + hashSet.add(EmpTwo.getEmpInstance(2, "ram", date)));
+		System.out.println("adding new elements :: " + hashSet.add(EmpTwo.getEmpInstance(3, "ram", date)));
+		System.out.println("adding duplicate elements :: " + hashSet.add(EmpTwo.getEmpInstance(1, "ram", date)));
 		for (EmpTwo emp : hashSet) {
 			System.out.println(emp);
 		}
-		System.out.println("end");
 	}
 
 }
@@ -62,14 +66,17 @@ class EmpTwo {
 		this.doj = doj;
 	}
 
+	/**
+	 * even though hashCode will return always 1, it will look for equals() to eliminate/ignore duplications.
+	 */
 	@Override
 	public int hashCode() {
-		/*final int prime = 31;
-		int result = 1;
-		result = prime * result + ((doj == null) ? 0 : doj.hashCode());
-		result = prime * result + eId;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;*/
+		/*
+		 * final int prime = 31; int result = 1; result = prime * result + ((doj
+		 * == null) ? 0 : doj.hashCode()); result = prime * result + eId; result
+		 * = prime * result + ((name == null) ? 0 : name.hashCode()); return
+		 * result;
+		 */
 		return 1;
 	}
 

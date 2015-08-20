@@ -3,7 +3,7 @@ package com.corejava.collections.map;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class WithWithOutHashCodeOverridingInMap {
+public class WithAndWithOutHashCodeOverridingInMap {
 
 	public static void main(String[] args) {
 
