@@ -20,6 +20,15 @@ public class StringLiteral {
 		System.out.println(str1 == str6);// false
 		System.out.println(str1 == str7);// false
 		System.out.println(str1 == str8);// true
+		
+		System.out.println("---str.subSequence(1, 5)-------------str.substring(1, 5)--------str.substring(1)---------");
+		String str = "sriram";
+		CharSequence subSequence = str.subSequence(1, 5);
+		System.out.println(subSequence);
+		String substring = str.substring(1, 5);
+		System.out.println(substring);
+		substring = str.substring(1);
+		System.out.println(substring);
 	}
 
 }
