@@ -26,3 +26,27 @@ as string is immutable still "ram" exist in String Pool, along with "sriram"
 
 thats where, all other s2,s3,s4,s5 are still pointing same literal "ram".
 
+
+- java.lang.UnsupportedClassVersionError happens because of a higher JDK during compile time and lower JDK during runtime.
+
+The version number shown describes the version of the JRE the class file is compatible with.
+
+The reported major numbers are:
+
+J2SE 8 = 52,
+J2SE 7 = 51,
+J2SE 6.0 = 50,
+J2SE 5.0 = 49,
+JDK 1.4 = 48,
+JDK 1.3 = 47,
+JDK 1.2 = 46,
+JDK 1.1 = 45
+
+
+To fix the actual problem you should try to either run the Java code with a newer version of Java JRE or specify the target parameter to the Java compiler to instruct the compiler to create code compatible with earlier Java versions.
+
+For example, in order to generate class files compatible with Java 1.4, use the following command line:
+
+javac -target 1.4 HelloWorld.java
+
+https://en.wikipedia.org/wiki/Java_class_file
