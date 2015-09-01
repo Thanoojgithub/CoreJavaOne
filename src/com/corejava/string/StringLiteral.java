@@ -40,6 +40,16 @@ public class StringLiteral {
 		// OUTPUT : a4b6c8pqrstv
 		System.out.println(charWithCountAsAString(str));
 		
+		
+		
+		String javaStr = "Java";
+		StringBuffer sb = new StringBuffer("Java");
+		StringBuilder sbr = new StringBuilder("Java");
+
+		System.out.println(javaStr.concat(" language"));
+		System.out.println(sb.append(" language"));
+		System.out.println(sbr.append(" language"));
+		
 	}
 
 	private static String charWithCountAsAString(String str) {
