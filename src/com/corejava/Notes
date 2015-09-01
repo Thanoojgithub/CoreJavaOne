@@ -50,3 +50,27 @@ For example, in order to generate class files compatible with Java 1.4, use the 
 javac -target 1.4 HelloWorld.java
 
 https://en.wikipedia.org/wiki/Java_class_file
+-----------------------------------------------------------------
+
+Architectural or high-level design
+Detailed or low-level design
+
+High level design involves decomposing a system into modules, and representing the interfaces & invocation relationships among modules. A HLD is referred to as software architecture.
+
+LLD, also known as a detailed design, is used to design internals of the individual modules identified during HLD i.e. data structures and algorithms of the modules are designed and documented.
+
+Now, HLD and LLD are actually used in traditional Approach (Function-Oriented Software Design) whereas in OOAD, system is seen as a set of objects interacting with each other.
+
+As per the above definitions, a high-level design document will usually include a high-level architecture diagram depicting the components, interfaces and networks that need to be further specified or developed. The document may also depict or otherwise refer to work flows and/or data flows between component systems.
+
+Class diagrams with all the methods and relations between classes comes under LLD. Program specs are covered under LLD. LLD describes each and every module in an elaborate manner so that the programmer can directly code the program based on it. There will be at least 1 document for each module. The LLD will contain: - detailed functional logic of the module in pseudo code - database tables with all elements including their type and size - all interface details with complete API references(both requests and responses) - all dependency issues - error message listings - complete inputs and outputs for a module.
+
+
+High Level Design (HLD) is the overall system design - covering the system architecture and database design. It describes the relation between various modules and functions of the system. data flow, flow charts and data structures are covered under HLD.
+
+Low Level Design (LLD) is like detailing the HLD. It defines the actual logic for each and every component of the system. Class diagrams with all the methods and relation between classes comes under LLD. Programs specs are covered under LLD.
+
+
+
+High Level Design(LLD) :It design the over all architecture of the entire system from main module to all sub module.
+Low Level Design(LLD) :It defines Internal logic of corresponding submodule designers are preparing individual LLD to Every module.
