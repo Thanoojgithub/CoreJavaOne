@@ -41,6 +41,11 @@ public class StringLiteral {
 		System.out.println(charWithCountAsAString(str));
 		
 		
+		Object o = null;
+		String strO = (String) o;
+		System.out.println("strO :: "+strO);
+		// OUTPUT :    strO :: null
+		
 		
 		String javaStr = "Java";
 		StringBuffer sb = new StringBuffer("Java");
