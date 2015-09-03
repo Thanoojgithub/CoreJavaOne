@@ -20,7 +20,7 @@ public class OverridingApp {
 
 class OverridingParent {
 	
-	protected BigInteger add (Integer i1, Integer i2) throws ArithmeticException{
+	protected Number add (Integer i1, Integer i2) throws ArithmeticException{
 		System.out.println("OverridingParent.add(Integer i1, Integer i2) - parent");
 		return BigInteger.valueOf(i1 + i2);
 	}
@@ -45,6 +45,7 @@ class OverridingChild extends OverridingParent{
 	 * when, superclass is NOT having checked-exception, but subclass trying to throws any type of Checked-Exception, then, it will throw ::
 	 * when, superclass is having a checked-exception, but subclass trying to throws of SUPER type Checked-Exception, then, it will throw ::
 	 * Exception is not compatible with throws clause in OverridingParent.add(String, String)
+	 * return type in sub class Override method can have sub-class type of method return type of super class i.e., Integer extends Number ; here, override method can have Integer as return type of super class method which return Number. 
 	 * 
 	 * we can not narrow the access specifiers in sub class.
 	 */

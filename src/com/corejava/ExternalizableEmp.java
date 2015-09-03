@@ -2,6 +2,7 @@ package com.corejava;
 
 import java.io.Externalizable;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -27,8 +28,7 @@ public class ExternalizableEmp implements Externalizable {
 	}
 
 	@Override
-	public void readExternal(ObjectInput in) throws IOException,
-			ClassNotFoundException {
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 		System.out.println("readExternal");
 		eId = (String) in.readObject();
 		eName = (String) in.readObject();
@@ -62,31 +62,34 @@ public class ExternalizableEmp implements Externalizable {
 		return "Emp [eId=" + eId + ", eName=" + eName + "]";
 	}
 
-	public static void main(String[] args) throws IOException,
-			ClassNotFoundException {
+	public static void main(String[] args) {
 		getSerialized();
 		getDeSerialized();
 	}
 
-	private static void getDeSerialized() throws IOException,
-			ClassNotFoundException {
-		FileInputStream fais = new FileInputStream("D:/Emp.ser");
-		ObjectInputStream objectInputStream = new ObjectInputStream(fais);
-		ExternalizableEmp emp2 = (ExternalizableEmp) objectInputStream
-				.readObject();
-		System.out.println(emp2);
-
-		fais.close();
+	private static void getDeSerialized() {
+		try (FileInputStream fais = new FileInputStream("D:/Emp.ser");
+				ObjectInputStream objectInputStream = new ObjectInputStream(fais)) {
+			ExternalizableEmp emp2 = (ExternalizableEmp) objectInputStream.readObject();
+			System.out.println(emp2);
+		} catch(FileNotFoundException  e) {
+			e.printStackTrace();
+		}catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private static void getSerialized() throws IOException {
+	private static void getSerialized() {
 		ExternalizableEmp emp = new ExternalizableEmp("1", "ram");
 		System.out.println(emp);
-		FileOutputStream faos = new FileOutputStream("D:/Emp.ser");
-		ObjectOutputStream objectOutputStream = new ObjectOutputStream(faos);
-		objectOutputStream.writeObject(emp);
-		faos.close();
-		objectOutputStream.close();
+		try (FileOutputStream faos = new FileOutputStream("D:/Emp.ser");
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(faos)) {
+			objectOutputStream.writeObject(emp);
+		} catch(FileNotFoundException  e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
