@@ -1,4 +1,4 @@
-package com.corejava;
+package com.corejava.thread;
 
 public class ThreadSyncApp {
 	public static void main(String[] args) {

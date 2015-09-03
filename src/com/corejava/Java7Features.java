@@ -1,9 +1,7 @@
 package com.corejava;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,9 +16,11 @@ public class Java7Features {
 		switchCase();
 		typeInference();
 		autoClosableImplements();
+		
 
 	}
 
+	
 	private static void autoClosableImplements() {
 		
 		/**
@@ -46,22 +46,18 @@ public class Java7Features {
 				String line = br.readLine();
 				System.out.println(line);
 			}
-		} catch (FileNotFoundException ex) {
-			System.out.println("file not found");
-		} catch (IOException ex) {
-			System.out.println("Can't read the file");
-		}
+		} catch ( IOException | NullPointerException e) {
+	        e.printStackTrace();
+	    }
 
 		try (FileReader text = new FileReader("Notes.txt"); Scanner scnr = new Scanner(text)) {
 			while (scnr.hasNextLine()) {
 				String line = scnr.nextLine();
 				System.out.println("line : " + line);
 			}
-		} catch (FileNotFoundException ex) {
-			System.out.println("file not found");
-		} catch (IOException ex) {
-			System.out.println("Can't read the file");
-		}
+		}catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	private static void typeInference() {

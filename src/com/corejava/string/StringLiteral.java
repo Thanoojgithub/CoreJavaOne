@@ -26,15 +26,15 @@ public class StringLiteral {
 
 		
 		String strName = "sriram";
-		CharSequence subSequence = strName.subSequence(1, 5);
-		System.out.println(subSequence);
-		String substring = strName.substring(1, 5);
-		System.out.println(substring);
-		substring = strName.substring(1);
-		System.out.println(substring);
-		System.out.println("---str.subSequence(1, 5)-------------str.substring(1, 5)--------str.substring(1)---------");
-		
-		
+		System.out.println(strName.subSequence(1, 5));
+		System.out.println(strName.substring(1, 5));
+		System.out.println(strName.substring(1));
+		/**
+		 * java.lang.StringIndexOutOfBoundsException: String index out of range: -2
+		 * System.out.println(strName.substring(3,1));
+		 */
+		System.out.println("---str.subSequence(1, 5)-rira-----------str.substring(1, 5)-rira-------str.substring(1)-riram--------");
+
 		
 		String str = "aaaabbbbbbccccccccpqrstv";
 		// OUTPUT : a4b6c8pqrstv
