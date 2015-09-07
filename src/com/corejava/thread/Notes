@@ -1,0 +1,17 @@
+What is Thread Pool?
+It’s a pool of worker threads with life cycle as follows:
+1. Get a new task to execute
+2. Execute it
+3. Go back to waiting for next task
+
+Why Thread Pools?
+In many server applications, we may want to process each client request in parallel. For that matter, we can choose traditional approach of creating one thread per request.
+
+Disadvantage of one thread per task approach
+  The overhead of creating a new thread for each request is significant. Server that processing requests can spend more time and consume more system resources in creating and destroying threads than it would processing actual client requests.
+  Creating too many threads in one JVM can cause the system to run out of memory or thrash due to excessive memory consumption.
+
+How to Create a Thread pool
+  Create n threads. Call them as workers.
+  For each worker, Implement run method with two constraints 1. Wait for a task on a queue 2. Execute the task and go back to waiting state.
+    Expose addTask method that adds a task to that task Queue.
