@@ -13,5 +13,7 @@ Disadvantage of one thread per task approach
 
 How to Create a Thread pool
   Create n threads. Call them as workers.
-  For each worker, Implement run method with two constraints 1. Wait for a task on a queue 2. Execute the task and go back to waiting state.
-    Expose addTask method that adds a task to that task Queue.
+    For each worker, Implement run method with two constraints 
+      1. Wait for a task on a queue 
+      2. Execute the task and go back to waiting state. 
+  Expose addTask method that adds a task to that task Queue.
