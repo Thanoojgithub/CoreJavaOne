@@ -93,7 +93,7 @@ import java.io.Serializable;
  * @author Thanooj Kalathuru
  *
  */
-class SerializableIns implements Serializable {
+class SerializableIns /*implements Serializable*/ {
 
 	private static final long serialVersionUID = 3553360521727114582L;
 	
@@ -110,6 +110,7 @@ class SerializableIns implements Serializable {
 
 	public SerializableIns(int id, String name) {
 		super();
+		System.out.println("SerializableIns.SerializableIns(int id, String name)");
 		this.id = id;
 		this.name = name;
 	}
@@ -133,11 +134,62 @@ class SerializableIns implements Serializable {
 
 }
 
-public class SerializableEmp extends SerializableIns {
+class Addr implements Serializable{
+
+	private static final long serialVersionUID = 2284031518816266320L;
+
+	private Integer dno;
+	private String streetName;
+	private String city;
+	
+	
+	public Addr() {
+	}
+	
+	public Addr(Integer dno, String streetName, String city) {
+		super();
+		this.dno = dno;
+		this.streetName = streetName;
+		this.city = city;
+	}
+
+	public Integer getDno() {
+		return dno;
+	}
+
+	public void setDno(Integer dno) {
+		this.dno = dno;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Override
+	public String toString() {
+		return "Addr [dno=" + dno + ", streetName=" + streetName + ", city=" + city + "]";
+	}
+}
+
+public class SerializableEmp extends SerializableIns implements Serializable {
 
 	private static final long serialVersionUID = -7571902186047402412L;
 	
 	private Integer eId;
+	
+	private Addr addr;
 	/**
 	 * 'transient' field will NOT get participated in both SE and DE-SE, including field name and value
 	 */
@@ -151,11 +203,12 @@ public class SerializableEmp extends SerializableIns {
 		super(123, "ram");
 		System.out.println("SerializableEmp subClass  of SerializableIns  default constructor");
 	}
-	public SerializableEmp(Integer eId, String eName) {
-		super(123, "ram");
+	public SerializableEmp(Integer eId, String eName, Addr addr) {
+		super(eId, eName);
 		System.out.println("SerializableEmp subClass  of SerializableIns - SerializableEmp(String eId, String eName)");
 		this.eId = eId;
 		this.eName = eName;
+		this.addr = addr;
 	}
 
 	public void seteId(Integer eId) {
@@ -180,18 +233,24 @@ public class SerializableEmp extends SerializableIns {
  
 	@Override
 	public String toString() {
-		return "SerializableEmp [eId=" + eId + ", eName=" + eName + ", id="
-				+ id + ", name=" + name + ", sfeName=" + sfeName +"]";
+		return "SerializableEmp [eId=" + eId + ", addr=" + addr + ", eName=" + eName + "]";
 	}
-
+	
 	public static void main(String[] args) throws IOException,
 			ClassNotFoundException {
 		getSerialized();
 		getDeSerialized();
 	}
+	
+	public Addr getAddr() {
+		return addr;
+	}
+	public void setAddr(Addr addr) {
+		this.addr = addr;
+	}
 
 	private static void getSerialized() throws IOException {
-		SerializableIns emp = new SerializableEmp(1, "sriram");
+		SerializableIns emp = new SerializableEmp(1, "sriram", new Addr(35, "BTM", "Bangalore"));
 		System.out.println("Before Serializable :: "+emp);
 		FileOutputStream faos = new FileOutputStream("/Emp.ser");
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(faos);
