@@ -61,7 +61,18 @@ public class WorkerThreadApp {
 		ExecutorService executor = Executors.newFixedThreadPool(1);
 		for (int i = 1; i <= 10; i++) {
 			Runnable worker = new WorkerThread("thread" + i);
-			executor.submit(worker);
+			/*
+			 * Executes the given command at some time in the future. The
+			 * command may execute in a new thread, in a pooled thread, or in
+			 * the calling thread, at the discretion of the Executor
+			 * implementation.
+			 * 
+			 * Parameters: command the runnable task 
+			 * Throws:
+			 * RejectedExecutionException - if this task cannot be accepted for
+			 * execution. NullPointerException - if command is null
+			 */
+			executor.execute(worker);
 		}
 		executor.shutdown();
 	}
