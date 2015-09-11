@@ -59,6 +59,7 @@ public class WorkerThreadApp {
 		 * 
 		 */
 		ExecutorService executor = Executors.newFixedThreadPool(1);
+		//getPoolSize() -  Returns the current number of threads in the pool.
 		for (int i = 1; i <= 10; i++) {
 			Runnable worker = new WorkerThread("thread" + i);
 			/*
@@ -74,6 +75,7 @@ public class WorkerThreadApp {
 			 */
 			executor.execute(worker);
 		}
+		//shutdown() Initiates an orderly shutdown in which previously submitted tasks are executed, but no new tasks will be accepted.
 		executor.shutdown();
 	}
 
