@@ -1,87 +1,45 @@
 package com.corejava.ds;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class BinarySearchApp {
 
+	
 	public static void main(String[] args) {
-
-	}
-
-}
-
-class List<E> {
-	
-	private int size = 0;
-	private static final int DEFAULT_CAPACITY = 10;
-	private Object elements[];
-
-	public List() {
-		elements = new Object[DEFAULT_CAPACITY];
-	}
-
-	public boolean add(E e) {
-		if (size == elements.length) {
-			ensureCapa();
-		}
-		elements[size++] = e;
-		return true;
-	}
-	
-	public void add(int index, E element) {
-		rangeCheckForAdd(index);
-		if (size == elements.length) {
-			ensureCapa();
+		int[] arr = { 6, 8, 2, 4 };
+		try (Scanner input = new Scanner(System.in)) {
+			System.out.println("Enter a number in between [1, 10]:");
+			int num = input.nextInt();
+			int elementPosition = binarySearch(arr, num);
+			if (elementPosition != -1) {
+				System.out.println("element " + num + " is at position: " + elementPosition);
+			} else {
+				System.out.println("element " + num + " is is not present in the given array");
+			}
+			System.out.println(Arrays.binarySearch(arr, num));
 		}
 
-        System.arraycopy(elements, index, elements, index + 1, size - index);
-        elements[index] = element;
-        size++;
-    }
-	
-	private void rangeCheckForAdd(int index) {
-        if (index > size || index < 0)
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
-    }
-
-	@SuppressWarnings("unchecked")
-	public E get(int index) {
-		rangeCheck(index);
-		return (E) elements[index];
 	}
 
-	public boolean isEmpty() {
-		return size == 0;
-	}
-
-	public boolean contains(Object o) {
-		return indexOf(o) >= 0;
-	}
-
-	public int indexOf(Object o) {
-		if (o == null) {
-			for (int i = 0; i < size; i++)
-				if (elements[i] == null)
-					return i;
-		} else {
-			for (int i = 0; i < size; i++)
-				if (o.equals(elements[i]))
-					return i;
+	public static int binarySearch(int[] inputArr, int key) {
+		Arrays.sort(inputArr);// 2 4 6 8
+		int start = 0;
+		int end = inputArr.length - 1;
+		while (start <= end) {
+			int mid = (start + end) / 2;
+			if (key == inputArr[mid]) {
+				return mid;
+			}
+			if (key < inputArr[mid]) {
+				end = mid - 1;
+			} else {
+				start = mid + 1;
+			}
 		}
 		return -1;
 	}
 
-	private void ensureCapa() {
-		int newSize = elements.length * 2;
-		elements = Arrays.copyOf(elements, newSize);
-	}
-
-	private void rangeCheck(int index) {
-		if (index >= size)
-			throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
-	}
-
-	private String outOfBoundsMsg(int index) {
-		return "Index: " + index + ", Size: " + size;
-	}
 }
