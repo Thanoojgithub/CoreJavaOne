@@ -1,4 +1,4 @@
-package com.corejava;
+package com.corejava.ds;
 
 import java.util.Stack;
 
