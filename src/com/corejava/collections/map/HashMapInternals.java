@@ -18,11 +18,24 @@ public class HashMapInternals {
 		 * 
 		 */
 		Map<String,String> map = new HashMap<>();
-		map.put("keyOne", "valueOne");
-		map.put("keyTwo", "valueTwo");
-		map.put("keyThree", "valueThree");
+		map.put("key1", "valueOne");
+		map.put("key2", "valueTwo");
+		map.put("key3", "valueThree");
+		map.put("key4", "valueThree");
+		map.put("key5", "valueThree");
+		map.put("key6", "valueThree");
+		map.put("key8", "valueThree");
+		map.put("key9", "valueThree");
+		map.put("key10", "valueThree");
+		map.put("key11", "valueThree");
+		map.put("key12", "valueThree");
+		map.put("key13", "valueThree");
+		//map.put("key14", "valueThree");
+		//map.put("key15", "valueThree");
 		map.put("AaBB", "AaBB");
 		map.put("BBAa", "BBAa");
+		map.put("BbAA", "BbAA");
+		map.put("AABb", "AABb");
 		System.out.println("OUT PUT ::");
 		for (Map.Entry<String, String> enter : map.entrySet()) {
 			// enter.setValue("temp"); - is valid
