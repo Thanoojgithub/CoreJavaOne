@@ -96,3 +96,33 @@ class AtomicLongArrayMultiThreadEnv implements Runnable {
 
 	}
 }
+
+//OUT PUT ::
+
+/**
+ * 
+ * 
+1 - incI :: 0 - tTwo
+1 - incI :: 0 - tOne
+2 - incI :: 10 - tTwo
+2 - incI :: 20 - tOne
+3 - incI :: 21 - tTwo
+3 - incI :: 22 - tOne
+tTwo :: 25
+tOne :: 28
+main Thread, finally i value is :: 28
+
+
+
+1 - incArr :: [0, 0, 0, 0, 0] - Thread-3
+1 - incArr :: [0, 0, 0, 0, 0] - Thread-2
+2 - incArr :: [11, 0, 0, 0, 0] - Thread-3
+2 - incArr :: [11, 0, 0, 0, 0] - Thread-2
+3 - incArr :: [15, 0, 0, 0, 0] - Thread-3
+3 - incArr :: [15, 0, 0, 0, 0] - Thread-2
+Thread-3 :: [100, 0, 0, 0, 0]
+Thread-2 :: [100, 0, 0, 0, 0]
+main Thread, finally i value is :: [100, 0, 0, 0, 0]
+ * 
+ * 
+ */
