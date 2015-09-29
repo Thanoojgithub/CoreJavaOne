@@ -48,8 +48,10 @@ public class ConcurentApp {
 			concMaps.remove(string);
 			System.out.print("an entry, ");
 			System.out.println("removed :: "+string);
-			// here, NO Exception has thrown
-			//concMaps.put(string, string);
+			/*
+			 *  here, NO Exception has thrown
+			 *  concMaps.put(string, string);
+			 */
 		} 
 		
 		for (Map.Entry<String, String> entry : concMaps.entrySet()) {

@@ -7,7 +7,7 @@ import java.util.Set;
 public class HashSetInternals {
 	public static void main(String[] args) {
 		//LikedHashSet, to retain insertion order
-		//TreeSet, to retrieve sorting order
+		//TreeSet, to retrieve sorting order (expects Cloneable implementation)
 		Set<EmpTwo> hashSet = new LinkedHashSet<EmpTwo>();
 		Date date = new Date();
 		/**
@@ -108,11 +108,5 @@ class EmpTwo {
 			return false;
 		return true;
 	}
-	
-	/**
-	 * Probability of hashCode and equals
-	 * 
-	 * 1. with out overri
-	 */
 
 }
