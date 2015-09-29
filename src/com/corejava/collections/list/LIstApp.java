@@ -8,35 +8,39 @@ public class ListApp {
 	public static void main(String[] args) {
 		List<String> listOne = new ArrayList<String>();
 		listOne.add("one");
+		listOne.add("one");
 		for (String string : listOne) {
 			System.out.println(string);
 		}
+		
 		/**
-		 * Type mismatch: cannot convert from ArrayList<String> to List<Object>
 		 * 
-		 * List<Object> listTwo = new ArrayList<String>(); listTwo.add("Two");
-		 * for (String string : listTwo) { System.out.println(string); }
+		 * * Type mismatch: cannot convert from ArrayList<String> to List<Object>
+		 * 
+		 * List<Object> listTwo = new ArrayList<String>();
+		 * listTwo.add("Two");
+		 * 
+		 * 
+		 * * Type mismatch: cannot convert from ArrayList<Object> to List<String>
+		 *  
+		 *  List<String> listThree = new ArrayList<Object>();
+		 *  listThree.add("one");
+		 *  
 		 */
 
-		/*
-		 * Type mismatch: cannot convert from ArrayList<Object> to List<String>
-		 * 
-		 * List<String> listThree = new ArrayList<Object>();
-		 * listThree.add("one"); for (String string : listThree) {
-		 * System.out.println(string); }
-		 */
 		
 		List<Integer> l1 = new ArrayList<>();
 		l1.add(1);
 		List<Integer> l2 = new ArrayList<>();
 		l2.add(1);
-		System.out.println(l1.equals(l2));
+		System.out.println("l1.equals(l2) :: " +l1.equals(l2));
+		
 		
 		List<EmpWithEqual> l3 = new ArrayList<>();
 		l3.add(new EmpWithEqual(1,"ram"));
 		List<EmpWithEqual> l4 = new ArrayList<>();
 		l4.add(new EmpWithEqual(1,"ram"));
-		System.out.println(l3.equals(l4));
+		System.out.println("l3.equals(l4) :: "+l3.equals(l4));
 
 	}
 
@@ -70,15 +74,6 @@ class EmpWithEqual {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((eId == null) ? 0 : eId.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -99,5 +94,4 @@ class EmpWithEqual {
 			return false;
 		return true;
 	}
-
 }
