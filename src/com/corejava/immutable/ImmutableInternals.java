@@ -1,4 +1,4 @@
-package com.corejava;
+package com.corejava.immutable;
 
 import java.util.Calendar;
 import java.util.Date;

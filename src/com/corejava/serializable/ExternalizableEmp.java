@@ -1,4 +1,4 @@
-package com.corejava;
+package com.corejava.serializable;
 
 import java.io.Externalizable;
 import java.io.FileInputStream;

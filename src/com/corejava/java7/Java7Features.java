@@ -1,4 +1,4 @@
-package com.corejava;
+package com.corejava.java7;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
