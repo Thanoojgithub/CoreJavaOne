@@ -9,27 +9,27 @@ public @interface Override {
 
 Indicates that a method declaration is intended to override a method declaration in a supertype. 
 If a method is annotated with this annotation type compilers are required to generate an error message unless at least one of the following conditions hold: 
-• The method does override or implement a method declared in a supertype. 
-• The method has a signature that is override-equivalent to Object class declaration
+'�� The method does override or implement a method declared in a supertype. 
+'�� The method has a signature that is override-equivalent to Object class declaration
 
-I have overridden the toString() method and used @Override annotation in above code. Even if I don’t put @Override, code works properly without any issue. So what’s the advantage and what does this annotation stand for? @Override tells the compiler that this method is an overridden method (metadata about method) and if any such method does not exist in parent class, then throw a compiler error (method does not override a method from its super class). 
+I have overridden the toString() method and used @Override annotation in above code. Even if I don't put @Override, code works properly without any issue. So what's the advantage and what does this annotation stand for? @Override tells the compiler that this method is an overridden method (metadata about method) and if any such method does not exist in parent class, then throw a compiler error (method does not override a method from its super class). 
 
 
-@Documented – Whether to put the annotation in Javadocs
-@Retention – When the annotation is needed
-@Target – Places the annotation can go
-@Inherited – Whether subclasses get the annotation.
+@Documented - Whether to put the annotation in Javadocs
+@Retention - When the annotation is needed
+@Target - Places the annotation can go
+@Inherited - Whether subclasses get the annotation.
 
-@Documented – A simple market annotations which tells whether to add Annotation in java doc or not.
+@Documented - A simple market annotations which tells whether to add Annotation in java doc or not.
 
-@Retention – Defines for how long the annotation should be kept.
-RetentionPolicy.SOURCE – Discard during the compile. These annotations don’t make any sense after the compile has completed, so they aren’t written to the bytecode. Examples @Override, @SuppressWarnings
-RetentionPolicy.CLASS – Discard during class load. Useful when doing bytecode-level post-processing. Somewhat surprisingly, this is the default.
-RetentionPolicy.RUNTIME – Do not discard. The annotation should be available for reflection at runtime. This is what we generally use for our custom annotations.
+@Retention - Defines for how long the annotation should be kept.
+RetentionPolicy.SOURCE - Discard during the compile. These annotations don't make any sense after the compile has completed, so they aren't written to the bytecode. Examples @Override, @SuppressWarnings
+RetentionPolicy.CLASS - Discard during class load. Useful when doing bytecode-level post-processing. Somewhat surprisingly, this is the default.
+RetentionPolicy.RUNTIME - Do not discard. The annotation should be available for reflection at runtime. This is what we generally use for our custom annotations.
 
-@Inherited – Controls whether annotation should affect subclass.
+@Inherited - Controls whether annotation should affect subclass.
 
-@Target – Where annotation can be placed. If you don’t specify this, annotation can be placed anywhere. Following are the valid values. One important point here is, it’s inclusive only which means if you want annotation on 7 attributes and just want to exclude only one attribute, you need to include all 7 while defining target.
+@Target - Where annotation can be placed. If you don't specify this, annotation can be placed anywhere. Following are the valid values. One important point here is, it's inclusive only which means if you want annotation on 7 attributes and just want to exclude only one attribute, you need to include all 7 while defining target.
 ElementType.TYPE (class, interface, enum)
 ElementType.FIELD (instance variable)
 ElementType.METHOD
