@@ -73,12 +73,12 @@ public class SortHashMapByValues {
 			System.out.println(entry.getKey() + " | " + entry.getValue());
 		}
 
-		Set<Map.Entry<String, EmployeeOne>> treeSet = new TreeSet<Map.Entry<String, EmployeeOne>>();
+		Set<EmployeeOne> treeSet = new TreeSet<EmployeeOne>();
 		for (Map.Entry<String, EmployeeOne> entry : map.entrySet()) {
-			treeSet.add(entry);
+			treeSet.add(entry.getValue());
 		}
-		for (Map.Entry<String, EmployeeOne> entry : treeSet) {
-			System.out.println(entry.getKey() + " ==== " + entry.getValue());
+		for (EmployeeOne emp : treeSet) {
+			System.out.println(emp);
 		}
 	}
 }
@@ -145,3 +145,33 @@ class EmployeeOne implements Comparable<EmployeeOne> {
 	}
 
 }
+
+
+/*
+ * 1 | EmployeeOne [eId=1, name=ram]
+3 | EmployeeOne [eId=3, name=lakshman]
+5 | EmployeeOne [eId=5, name=bharatha]
+4 | EmployeeOne [eId=4, name=hanuma]
+2 | EmployeeOne [eId=2, name=seetha]
+1 ==== EmployeeOne [eId=1, name=ram]
+2 ==== EmployeeOne [eId=2, name=seetha]
+3 ==== EmployeeOne [eId=3, name=lakshman]
+4 ==== EmployeeOne [eId=4, name=hanuma]
+5 ==== EmployeeOne [eId=5, name=bharatha]
+5 ==== EmployeeOne [eId=5, name=bharatha]
+4 ==== EmployeeOne [eId=4, name=hanuma]
+3 ==== EmployeeOne [eId=3, name=lakshman]
+1 ==== EmployeeOne [eId=1, name=ram]
+2 ==== EmployeeOne [eId=2, name=seetha]
+1 | EmployeeOne [eId=1, name=ram]
+4 | EmployeeOne [eId=4, name=hanuma]
+3 | EmployeeOne [eId=3, name=lakshman]
+5 | EmployeeOne [eId=5, name=bharatha]
+2 | EmployeeOne [eId=2, name=seetha]
+EmployeeOne [eId=5, name=bharatha]
+EmployeeOne [eId=4, name=hanuma]
+EmployeeOne [eId=3, name=lakshman]
+EmployeeOne [eId=1, name=ram]
+EmployeeOne [eId=2, name=seetha]
+ * 
+ * */

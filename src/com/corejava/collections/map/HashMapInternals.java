@@ -18,8 +18,8 @@ public class HashMapInternals {
 		 * 
 		 */
 		Map<String,String> map = new HashMap<>();
-		map.put("key1", "valueOne");
-		map.put("key2", "valueTwo");
+		map.put("key1", "value1");
+		map.put("key2", "value2");
 		map.put("key3", "value3");
 		map.put("key4", "value4");
 		map.put("key5", "value5");
