@@ -1,4 +1,4 @@
-package com.corejava.collections.legacy;
+package com.corejava.collections.legacyJDK1_0;
 
 import java.io.BufferedWriter;
 import java.io.File;
